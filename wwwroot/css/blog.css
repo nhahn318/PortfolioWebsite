@@ -1,0 +1,567 @@
+/* Blog Specific Styles */
+
+/* Blog Header */
+.blog-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.blog-title {
+    font-size: 48px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.blog-subtitle {
+    font-size: 20px;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Blog Content */
+.blog-content {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+}
+
+.blog-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* Blog Posts */
+.blog-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.blog-post-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.blog-post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.blog-post-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.blog-post-content {
+    padding: 30px;
+}
+
+.blog-post-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+.blog-post-category {
+    background: #20b2aa;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.blog-post-date {
+    color: #999;
+}
+
+.blog-post-views {
+    color: #999;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.blog-post-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #333;
+    line-height: 1.3;
+}
+
+.blog-post-excerpt {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.blog-post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.blog-post-tag {
+    background: #f0f0f0;
+    color: #666;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.blog-post-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.read-more-btn {
+    background: #20b2aa;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.read-more-btn:hover {
+    background: #1a9b94;
+}
+
+.blog-post-author {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Sidebar */
+.blog-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.sidebar-widget {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.sidebar-widget h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #20b2aa;
+    padding-bottom: 10px;
+}
+
+.featured-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.featured-post {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.featured-post:hover {
+    background: #e9ecef;
+}
+
+.featured-post-image {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.featured-post-content h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+    line-height: 1.3;
+}
+
+.featured-post-meta {
+    font-size: 12px;
+    color: #666;
+}
+
+.category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-list li {
+    margin-bottom: 10px;
+}
+
+.category-link {
+    color: #666;
+    text-decoration: none;
+    padding: 8px 12px;
+    display: block;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.category-link:hover,
+.category-link.active {
+    background: #20b2aa;
+    color: white;
+}
+
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag-cloud .tag {
+    background: #f0f0f0;
+    color: #666;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.tag-cloud .tag:hover {
+    background: #20b2aa;
+    color: white;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 2% auto;
+    padding: 0;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+    background: rgba(255, 255, 255, 0.9);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+}
+
+.modal-body {
+    padding: 30px;
+    max-height: calc(90vh - 60px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+}
+
+.modal-body h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.modal-body h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 30px 0 15px 0;
+    color: #333;
+}
+
+.modal-body h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 25px 0 10px 0;
+    color: #333;
+}
+
+.modal-body p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #666;
+}
+
+.modal-body ul, .modal-body ol {
+    margin-bottom: 15px;
+    padding-left: 30px;
+}
+
+.modal-body li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    color: #666;
+}
+
+.modal-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.modal-body table th,
+.modal-body table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.modal-body table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.modal-body strong {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .blog-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .blog-title {
+        font-size: 36px;
+    }
+    
+    .blog-subtitle {
+        font-size: 18px;
+    }
+    
+    .blog-post-content {
+        padding: 20px;
+    }
+    
+    .blog-post-title {
+        font-size: 20px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+    
+    .modal-body h1 {
+        font-size: 24px;
+    }
+    
+    .modal-body h2 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-header {
+        padding: 60px 0;
+    }
+    
+    .blog-title {
+        font-size: 28px;
+    }
+    
+    .blog-subtitle {
+        font-size: 16px;
+    }
+    
+    .blog-post-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .blog-post-actions {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+}
+
+/* Code Block Styling - Visual Studio Theme - Updated 2025-01-16 */
+.modal-body pre,
+.post-content pre {
+    background: #1e1e1e !important;
+    color: #d4d4d4 !important;
+    padding: 15px !important;
+    border-radius: 12px !important;
+    overflow-x: auto !important;
+    margin: 15px auto !important;
+    max-width: 90% !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #333 !important;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace !important;
+    font-size: 12px !important;
+    line-height: 1.0 !important;
+    position: relative !important;
+}
+
+.modal-body pre::before,
+.post-content pre::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 30px !important;
+    background: #2d2d2d !important;
+    border-radius: 12px 12px 0 0 !important;
+    border-bottom: 1px solid #444 !important;
+}
+
+.modal-body pre::after,
+.post-content pre::after {
+    content: '● ● ●' !important;
+    position: absolute !important;
+    top: 8px !important;
+    left: 15px !important;
+    color: #666 !important;
+    font-size: 12px !important;
+    letter-spacing: 3px !important;
+}
+
+.modal-body pre code,
+.post-content pre code {
+    background: none !important;
+    color: inherit !important;
+    padding: 0 !important;
+    padding-top: 20px !important;
+    display: block !important;
+    white-space: pre !important;
+    font-family: inherit !important;
+}
+
+/* Syntax highlighting for Java code */
+.post-content pre code .keyword {
+    color: #569cd6 !important;
+    font-weight: bold !important;
+}
+
+.post-content pre code .string {
+    color: #ce9178 !important;
+}
+
+.post-content pre code .comment {
+    color: #6a9955 !important;
+    font-style: italic !important;
+}
+
+.post-content pre code .number {
+    color: #b5cea8 !important;
+}
+
+.post-content pre code .class-name {
+    color: #4ec9b0 !important;
+}
+
+/* Inline code styling */
+.post-content code {
+    background: #f4f4f4 !important;
+    padding: 2px 6px !important;
+    border-radius: 4px !important;
+    font-family: 'Courier New', monospace !important;
+    color: #e74c3c !important;
+    font-size: 0.9em !important;
+}
+
+/* Responsive design for code blocks */
+@media (max-width: 768px) {
+    .post-content pre {
+        margin: 15px 0 !important;
+        padding: 15px !important;
+        font-size: 12px !important;
+        max-width: 100% !important;
+    }
+    
+    .post-content pre::before {
+        height: 25px !important;
+    }
+    
+    .post-content pre::after {
+        top: 6px !important;
+        left: 12px !important;
+        font-size: 10px !important;
+    }
+    
+    .post-content pre code {
+        padding-top: 15px !important;
+    }
+}

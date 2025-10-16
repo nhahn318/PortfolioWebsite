@@ -1,0 +1,646 @@
+// Blog JavaScript với dữ liệu động
+class BlogApp {
+    constructor() {
+        this.postsManager = new BlogPostsManager();
+        this.blogPosts = [];
+        this.featuredPosts = [];
+        this.currentCategory = 'all';
+        this.isLoading = false;
+        this.init();
+    }
+
+    // Load dữ liệu bài viết từ các file JSON
+    async loadBlogPosts() {
+        if (this.isLoading) return;
+        
+        this.isLoading = true;
+        this.showLoadingState();
+        
+        try {
+            this.blogPosts = await this.postsManager.loadAllPosts();
+            this.featuredPosts = this.postsManager.getFeaturedPosts();
+            this.renderBlogPosts();
+            this.renderFeaturedPosts();
+            this.renderTagCloud();
+        } catch (error) {
+            console.error('Error loading blog posts:', error);
+            this.showErrorState();
+        } finally {
+            this.isLoading = false;
+            this.hideLoadingState();
+        }
+    }
+
+    showLoadingState() {
+        const container = document.getElementById('blogPosts');
+        if (container) {
+            container.innerHTML = '<div class="loading">Đang tải bài viết...</div>';
+        }
+    }
+
+    hideLoadingState() {
+        const loading = document.querySelector('.loading');
+        if (loading) {
+            loading.remove();
+        }
+    }
+
+    showErrorState() {
+        const container = document.getElementById('blogPosts');
+        if (container) {
+            container.innerHTML = '<div class="error">Không thể tải bài viết. Vui lòng thử lại sau.</div>';
+        }
+    }
+
+    init() {
+        this.setupEventListeners();
+        this.loadBlogPosts();
+    }
+
+    setupEventListeners() {
+        // Category filtering
+        document.querySelectorAll('.category-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const category = link.getAttribute('data-category');
+                this.filterByCategory(category);
+                
+                // Update active state
+                document.querySelectorAll('.category-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+
+        // Modal close
+        const modal = document.getElementById('postModal');
+        const closeBtn = document.querySelector('.close');
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                this.closeModal();
+            });
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                this.closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                this.closeModal();
+            }
+        });
+    }
+
+    filterByCategory(category) {
+        this.currentCategory = category;
+        this.renderBlogPosts();
+    }
+
+    // Tìm kiếm bài viết
+    searchPosts(query) {
+        if (!query.trim()) {
+            this.renderBlogPosts();
+            return;
+        }
+        
+        const searchResults = this.postsManager.searchPosts(query);
+        this.displaySearchResults(searchResults);
+    }
+
+    displaySearchResults(results) {
+        const container = document.getElementById('blogPosts');
+        if (!container) return;
+
+        if (results.length === 0) {
+            container.innerHTML = '<div class="no-results">Không tìm thấy bài viết nào phù hợp.</div>';
+            return;
+        }
+
+        container.innerHTML = results.map(post => `
+            <article class="blog-post-card" onclick="blogApp.openPost(${post.id})">
+                <img src="${post.featuredImageUrl}" alt="${post.title}" class="blog-post-image"
+                     onerror="this.src='https://via.placeholder.com/400x250?text=Blog+Image'">
+                <div class="blog-post-content">
+                    <div class="blog-post-meta">
+                        <span class="blog-post-category">${post.category}</span>
+                        <span class="blog-post-date">${this.formatDate(post.createdDate)}</span>
+                        <span class="blog-post-views">👁 ${post.viewCount}</span>
+                    </div>
+                    <h2 class="blog-post-title">${post.title}</h2>
+                    <p class="blog-post-excerpt">${post.excerpt}</p>
+                    <div class="blog-post-tags">
+                        ${post.tags.map(tag => `<span class="blog-post-tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="blog-post-actions">
+                        <button class="read-more-btn">Đọc tiếp</button>
+                        <span class="blog-post-author">Tác giả: ${post.author}</span>
+                    </div>
+                </div>
+            </article>
+        `).join('');
+    }
+
+    renderBlogPosts() {
+        const container = document.getElementById('blogPosts');
+        if (!container) return;
+
+        let filteredPosts = this.blogPosts;
+        if (this.currentCategory !== 'all') {
+            filteredPosts = this.blogPosts.filter(post => 
+                post.category.toLowerCase() === this.currentCategory.toLowerCase()
+            );
+        }
+
+        container.innerHTML = filteredPosts.map(post => `
+            <article class="blog-post-card" onclick="blogApp.openPost(${post.id})">
+                <img src="${post.featuredImageUrl}" alt="${post.title}" class="blog-post-image"
+                     onerror="this.src='https://via.placeholder.com/400x250?text=Blog+Image'">
+                <div class="blog-post-content">
+                    <div class="blog-post-meta">
+                        <span class="blog-post-category">${post.category}</span>
+                        <span class="blog-post-date">${this.formatDate(post.createdDate)}</span>
+                        <span class="blog-post-views">👁 ${post.viewCount}</span>
+                    </div>
+                    <h2 class="blog-post-title">${post.title}</h2>
+                    <p class="blog-post-excerpt">${post.excerpt}</p>
+                    <div class="blog-post-tags">
+                        ${post.tags.map(tag => `<span class="blog-post-tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="blog-post-actions">
+                        <button class="read-more-btn">Đọc tiếp</button>
+                        <span class="blog-post-author">Tác giả: ${post.author}</span>
+                    </div>
+                </div>
+            </article>
+        `).join('');
+    }
+
+    renderFeaturedPosts() {
+        const container = document.getElementById('featuredPosts');
+        if (!container) return;
+
+        container.innerHTML = this.featuredPosts.map(post => `
+            <div class="featured-post" onclick="blogApp.openPost(${post.id})">
+                <img src="${post.featuredImageUrl}" alt="${post.title}" class="featured-post-image"
+                     onerror="this.src='https://via.placeholder.com/80x60?text=Image'">
+                <div class="featured-post-content">
+                    <h4>${post.title}</h4>
+                    <div class="featured-post-meta">
+                        ${this.formatDate(post.createdDate)} • ${post.viewCount} lượt xem
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    renderTagCloud() {
+        const container = document.getElementById('tagCloud');
+        if (!container) return;
+
+        // Collect all tags from posts
+        const allTags = [];
+        this.blogPosts.forEach(post => {
+            post.tags.forEach(tag => {
+                if (!allTags.includes(tag)) {
+                    allTags.push(tag);
+                }
+            });
+        });
+
+        container.innerHTML = allTags.map(tag => `
+            <a href="#" class="tag" onclick="blogApp.filterByTag('${tag}')">${tag}</a>
+        `).join('');
+    }
+
+    openPost(postId) {
+        const post = this.blogPosts.find(p => p.id === postId);
+        if (!post) return;
+            
+            const modal = document.getElementById('postModal');
+            const modalBody = document.getElementById('modalBody');
+        
+        // Lưu scroll position hiện tại
+        this.scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+            
+            modalBody.innerHTML = `
+                <div class="post-header">
+                    <div class="post-meta">
+                        <span class="post-category">${post.category}</span>
+                        <span class="post-date">${this.formatDate(post.createdDate)}</span>
+                        <span class="post-views">👁 ${post.viewCount} lượt xem</span>
+                    </div>
+                    <h1>${post.title}</h1>
+                    <div class="post-tags">
+                        ${post.tags.map(tag => `<span class="post-tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+                <div class="post-content">
+                ${this.formatContent(post.content)}
+                </div>
+                <div class="post-footer">
+                    <p><strong>Tác giả:</strong> ${post.author}</p>
+                    <p><strong>Cập nhật lần cuối:</strong> ${this.formatDate(post.updatedDate)}</p>
+                </div>
+            `;
+        
+        // Ngăn scroll body khi modal mở
+        document.body.classList.add('modal-open');
+        document.body.style.top = `-${this.scrollPosition}px`;
+            
+            modal.style.display = 'block';
+        
+        // Focus vào modal để có thể scroll bằng keyboard
+        modal.focus();
+    }
+
+    closeModal() {
+        const modal = document.getElementById('postModal');
+        modal.style.display = 'none';
+        
+        // Khôi phục scroll body khi đóng modal
+        document.body.classList.remove('modal-open');
+        document.body.style.top = '';
+        
+        // Khôi phục scroll position
+        if (this.scrollPosition !== undefined) {
+            window.scrollTo(0, this.scrollPosition);
+        }
+    }
+
+    formatContent(content) {
+        // Convert markdown-like content to HTML
+        let html = content;
+        
+        // Process code blocks first (before paragraph processing)
+        html = html.replace(/```java([\s\S]*?)```/gim, (match, code) => {
+            return `<pre style="background: #1e1e1e !important; color: #d4d4d4 !important; padding: 15px !important; border-radius: 12px !important; overflow-x: auto !important; margin: 15px auto !important; max-width: 90% !important; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important; border: 1px solid #333 !important; font-family: 'Consolas', 'Monaco', 'Courier New', monospace !important; font-size: 12px !important; line-height: 1.0 !important; position: relative !important;"><code class="java">${this.escapeHtml(code.trim())}</code></pre>`;
+        });
+        
+        html = html.replace(/```([\s\S]*?)```/gim, (match, code) => {
+            return `<pre style="background: #1e1e1e !important; color: #d4d4d4 !important; padding: 15px !important; border-radius: 12px !important; overflow-x: auto !important; margin: 15px auto !important; max-width: 90% !important; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important; border: 1px solid #333 !important; font-family: 'Consolas', 'Monaco', 'Courier New', monospace !important; font-size: 12px !important; line-height: 1.0 !important; position: relative !important;"><code>${this.escapeHtml(code.trim())}</code></pre>`;
+        });
+        
+        // Process other markdown elements
+        html = html
+            .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+            .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+            .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+            .replace(/^#### (.*$)/gim, '<h4>$1</h4>')
+            .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+            .replace(/`(.*?)`/gim, (match, code) => '<code>' + this.escapeHtml(code) + '</code>');
+        
+        // Process paragraphs, but preserve pre blocks
+        html = html
+            .replace(/\n\n/gim, '</p><p>')
+            .replace(/^(.*)$/gim, '<p>$1</p>')
+            .replace(/<p><\/p>/gim, '')
+            .replace(/<p>(<h[1-6]>.*<\/h[1-6]>)<\/p>/gim, '$1')
+            .replace(/<p>(<pre>.*<\/pre>)<\/p>/gim, '$1');
+        
+        return html;
+    }
+
+    escapeHtml(code) {
+        // Simple HTML escaping to prevent rendering issues
+        return code.replace(/&/g, '&amp;')
+                  .replace(/</g, '&lt;')
+                  .replace(/>/g, '&gt;')
+                  .replace(/"/g, '&quot;')
+                  .replace(/'/g, '&#39;');
+    }
+
+    filterByTag(tag) {
+        // Filter posts by tag
+        const filteredPosts = this.blogPosts.filter(post => 
+            post.tags.includes(tag)
+        );
+        
+        // Update display
+        const container = document.getElementById('blogPosts');
+        if (!container) return;
+
+        container.innerHTML = filteredPosts.map(post => `
+            <article class="blog-post-card" onclick="blogApp.openPost(${post.id})">
+                <img src="${post.featuredImageUrl}" alt="${post.title}" class="blog-post-image"
+                     onerror="this.src='https://via.placeholder.com/400x250?text=Blog+Image'">
+                <div class="blog-post-content">
+                    <div class="blog-post-meta">
+                        <span class="blog-post-category">${post.category}</span>
+                        <span class="blog-post-date">${this.formatDate(post.createdDate)}</span>
+                        <span class="blog-post-views">👁 ${post.viewCount}</span>
+                    </div>
+                    <h2 class="blog-post-title">${post.title}</h2>
+                    <p class="blog-post-excerpt">${post.excerpt}</p>
+                    <div class="blog-post-tags">
+                        ${post.tags.map(t => `<span class="blog-post-tag">${t}</span>`).join('')}
+                    </div>
+                    <div class="blog-post-actions">
+                        <button class="read-more-btn">Đọc tiếp</button>
+                        <span class="blog-post-author">Tác giả: ${post.author}</span>
+                    </div>
+                </div>
+            </article>
+        `).join('');
+    }
+
+    formatDate(dateString) {
+        const date = new Date(dateString);
+        const options = { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        };
+        return date.toLocaleDateString('vi-VN', options);
+    }
+}
+
+// Add CSS styles first, before initializing the app
+const additionalStyle = document.createElement('style');
+additionalStyle.textContent = `
+    .post-header {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #f0f0f0;
+    }
+    
+    .post-meta {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 15px;
+        font-size: 14px;
+        color: #666;
+    }
+    
+    .post-category {
+        background: #20b2aa;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-weight: 500;
+    }
+    
+    .post-tags {
+        margin-top: 15px;
+    }
+    
+    .post-tag {
+        background: #f0f0f0;
+        color: #666;
+        padding: 4px 10px;
+        border-radius: 15px;
+        font-size: 12px;
+        margin-right: 8px;
+        display: inline-block;
+        margin-bottom: 8px;
+    }
+    
+    .post-footer {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #f0f0f0;
+        color: #666;
+        font-size: 14px;
+    }
+    
+    .post-content {
+        line-height: 1.8;
+    }
+    
+    .post-content h1 {
+        color: #333;
+        margin: 30px 0 20px 0;
+        font-size: 2.5em;
+        border-bottom: 3px solid #20b2aa;
+        padding-bottom: 10px;
+    }
+    
+    .post-content h2 {
+        color: #333;
+        margin: 30px 0 15px 0;
+        font-size: 2em;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    
+    .post-content h3 {
+        color: #333;
+        margin: 25px 0 10px 0;
+        font-size: 1.5em;
+    }
+    
+    .post-content h4 {
+        color: #333;
+        margin: 20px 0 8px 0;
+        font-size: 1.2em;
+    }
+    
+    .post-content p {
+        margin-bottom: 15px;
+        color: #666;
+    }
+    
+    .post-content ul, .post-content ol {
+        margin-bottom: 15px;
+        padding-left: 30px;
+    }
+    
+    .post-content li {
+        margin-bottom: 8px;
+        color: #666;
+    }
+    
+    .post-content code {
+        background: #f4f4f4;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+        color: #e74c3c;
+    }
+    
+    .post-content pre {
+        background: #1e1e1e !important;
+        color: #d4d4d4 !important;
+        padding: 25px !important;
+        border-radius: 12px !important;
+        overflow-x: auto !important;
+        margin: 25px auto !important;
+        max-width: 90% !important;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+        border: 1px solid #333 !important;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace !important;
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+        position: relative !important;
+    }
+    
+    .post-content pre::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 30px !important;
+        background: #2d2d2d !important;
+        border-radius: 12px 12px 0 0 !important;
+        border-bottom: 1px solid #444 !important;
+    }
+    
+    .post-content pre::after {
+        content: '● ● ●' !important;
+        position: absolute !important;
+        top: 8px !important;
+        left: 15px !important;
+        color: #666 !important;
+        font-size: 12px !important;
+        letter-spacing: 3px !important;
+    }
+    
+    .post-content pre code {
+        background: none !important;
+        color: inherit !important;
+        padding: 0 !important;
+        padding-top: 20px !important;
+        display: block !important;
+        white-space: pre !important;
+        font-family: inherit !important;
+    }
+    
+    /* Syntax highlighting for Java code */
+    .post-content pre code .keyword {
+        color: #569cd6 !important;
+        font-weight: bold !important;
+    }
+    
+    .post-content pre code .string {
+        color: #ce9178 !important;
+    }
+    
+    .post-content pre code .comment {
+        color: #6a9955 !important;
+        font-style: italic !important;
+    }
+    
+    .post-content pre code .number {
+        color: #b5cea8 !important;
+    }
+    
+    .post-content pre code .class-name {
+        color: #4ec9b0 !important;
+    }
+    
+    /* Responsive design for code blocks */
+    @media (max-width: 768px) {
+        .post-content pre {
+            margin: 15px 0;
+            padding: 15px;
+            font-size: 12px;
+            max-width: 100%;
+        }
+        
+        .post-content pre::before {
+            height: 25px;
+        }
+        
+        .post-content pre::after {
+            top: 6px;
+            left: 12px;
+            font-size: 10px;
+        }
+        
+        .post-content pre code {
+            padding-top: 15px;
+        }
+    }
+    
+    .post-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+    
+    .post-content table th,
+    .post-content table td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+    }
+    
+    .post-content table th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+    }
+    
+    .post-content strong {
+        font-weight: 600;
+        color: #333;
+    }
+    
+    .post-content em {
+        font-style: italic;
+        color: #555;
+    }
+    
+    /* Loading and Error States */
+    .loading {
+        text-align: center;
+        padding: 40px 20px;
+        font-size: 18px;
+        color: #666;
+        background: #f8f9fa;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    
+    .error {
+        text-align: center;
+        padding: 40px 20px;
+        font-size: 18px;
+        color: #e74c3c;
+        background: #fdf2f2;
+        border: 1px solid #fecaca;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    
+    .no-results {
+        text-align: center;
+        padding: 40px 20px;
+        font-size: 18px;
+        color: #666;
+        background: #f8f9fa;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    
+    /* Loading animation */
+    .loading::after {
+        content: '';
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #f3f3f3;
+        border-top: 2px solid #20b2aa;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-left: 10px;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+`;
+document.head.appendChild(additionalStyle);
+
+// Initialize the blog app when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    window.blogApp = new BlogApp();
+});
