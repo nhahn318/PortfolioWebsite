@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống quản lý quán cafe - Trần Thiện Nhân</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        
+        .project-detail {
+            padding: 40px 0 40px 0;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+        .project-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .project-header {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .project-image-large {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 0 auto 30px;
+            display: block;
+        }
+        .project-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .project-technologies {
+            color: #20b2aa;
+            font-weight: 600;
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .project-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #666;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .project-sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .project-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #20b2aa;
+            padding-bottom: 10px;
+        }
+        .section-list {
+            list-style: none;
+            padding: 0;
+        }
+        .section-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #666;
+            line-height: 1.6;
+        }
+        .section-list li:before {
+            content: "✓";
+            color: #20b2aa;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .back-button {
+            display: inline-block;
+            background: #20b2aa;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: background 0.3s ease;
+        }
+        .back-button:hover {
+            background: #1a9b94;
+        }
+        .project-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #20b2aa;
+        }
+        
+        .project-info p {
+            margin: 8px 0;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .project-screenshots {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .screenshot-item {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .screenshot-item h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #20b2aa;
+            padding-bottom: 8px;
+        }
+        
+        .screenshot-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .screenshot-image:hover {
+            transform: scale(1.02);
+        }
+        
+        @media (max-width: 1024px) {
+            .project-screenshots {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .project-sections {
+                grid-template-columns: 1fr;
+            }
+            .project-title {
+                font-size: 28px;
+            }
+            .project-screenshots {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="index.html#home" class="nav-link">HOME</a>
+            <a href="index.html#about" class="nav-link">ABOUT</a>
+            <a href="index.html#resume" class="nav-link">RÉSUMÉ</a>
+            <a href="index.html#gallery" class="nav-link">GALLERY</a>
+            <a href="index.html#portfolio" class="nav-link active">PORTFOLIO</a>
+            <a href="blog.html" class="nav-link">BLOG</a>
+            <a href="index.html#contact" class="nav-link">CONTACT</a>
+        </div>
+    </nav>
+
+    <div class="project-detail">
+        <div class="project-container">
+            <a href="index.html" class="back-button">← Quay lại Portfolio</a>
+            
+            <div class="project-header">
+                <img src="images/HeThongQLCafeWinform.png" alt="Cafe Management System" class="project-image-large">
+                <h1 class="project-title">Hệ thống quản lý quán cafe</h1>
+                <div class="project-technologies">C#, WinForm, SQL Server, Entity Framework, ADO.NET</div>
+                <p class="project-description">
+                    <strong>Đồ án môn học: Lập trình trên môi trường Windows</strong><br>
+                    Phần mềm quản lý toàn diện cho quán cafe được phát triển bằng WinForm, hỗ trợ quản lý menu, đơn hàng, nhân viên và báo cáo doanh thu. Hệ thống được thiết kế với giao diện thân thiện, sơ đồ bàn trực quan hỗ trợ quản lý đa tầng (trệt, lầu 1-3, phòng lạnh). Đây là đồ án nhóm 4 thành viên với sự hướng dẫn của thầy Nguyễn Huy Cường.
+                </p>
+            </div>
+            
+            <div class="project-sections">
+                <div class="project-section">
+                    <h2 class="section-title">Tính năng chính</h2>
+                    <ul class="section-list">
+                        <li><strong>Quản lý bán hàng:</strong> Order món, thanh toán, in hóa đơn với giao diện trực quan</li>
+                        <li><strong>Quản lý bàn:</strong> Sơ đồ bàn trực quan, quản lý đa tầng (trệt, lầu 1-3, phòng lạnh)</li>
+                        <li><strong>Quản lý nhân viên:</strong> Ca làm, lịch làm việc, tính lương thưởng tự động</li>
+                        <li><strong>Quản lý kho:</strong> Nhập/xuất hàng, quản lý nhà cung cấp, kiểm kê tồn kho</li>
+                        <li><strong>Quản lý menu:</strong> Thêm/sửa/xóa món, upload hình ảnh, phân loại món</li>
+                        <li><strong>Báo cáo thống kê:</strong> Doanh thu, tồn kho, lương nhân viên theo thời gian</li>
+                    </ul>
+                </div>
+                
+                <div class="project-section">
+                    <h2 class="section-title">Giao diện hệ thống</h2>
+                    <ul class="section-list">
+                        <li><strong>Giao diện chính:</strong> Sơ đồ bàn với trạng thái trực quan (trống/đang sử dụng)</li>
+                        <li><strong>Form chọn món:</strong> Menu đầy đủ với hình ảnh, giá cả, tìm kiếm</li>
+                        <li><strong>Quản lý nhân viên:</strong> Danh sách ca làm, lịch làm việc, thông tin cá nhân</li>
+                        <li><strong>Quản lý kho:</strong> Nhập/xuất hàng, theo dõi tồn kho, báo cáo</li>
+                        <li><strong>Báo cáo thống kê:</strong> Biểu đồ doanh thu, báo cáo chi tiết</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-sections">
+                <div class="project-section">
+                    <h2 class="section-title">Thông tin dự án</h2>
+                    <div class="project-info">
+                        <p><strong>Loại dự án:</strong> Đồ án môn học</p>
+                        <p><strong>Môn học:</strong> Lập trình trên môi trường Windows</p>
+                        <p><strong>Giảng viên hướng dẫn:</strong> ThS. Nguyễn Huy Cường</p>
+                        <p><strong>Nhóm thực hiện:</strong> 4 thành viên</p>
+                        <p><strong>Thời gian:</strong> Học kỳ 1, năm học 2024-2025</p>
+                        <p><strong>Trường:</strong> Đại học Công nghệ TP.HCM (HUTECH)</p>
+                    </div>
+                </div>
+                
+                <div class="project-section">
+                    <h2 class="section-title">Kết quả đạt được</h2>
+                    <ul class="section-list">
+                        <li>Hoàn thiện đầy đủ chức năng cơ bản: thêm, sửa, xóa, cập nhật thông tin</li>
+                        <li>Quản lý được yêu cầu gọi món của khách hàng một cách hiệu quả</li>
+                        <li>Thực hiện chấm công nhân viên, thanh toán trả lương tự động</li>
+                        <li>Quản lý được việc xuất, nhập kho với báo cáo chi tiết</li>
+                        <li>Giao diện thân thiện, dễ sử dụng, trực quan và linh hoạt</li>
+                        <li>Hỗ trợ quản lý đa tầng với sơ đồ bàn trực quan</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-sections">
+                <div class="project-section full-width">
+                    <h2 class="section-title">Hình ảnh giao diện</h2>
+                    <div class="project-screenshots">
+                        <div class="screenshot-item">
+                            <h3>Giao diện đăng nhập hệ thống</h3>
+                            <img src="images/pr1_h1.jpg" alt="Login Interface" class="screenshot-image">
+                        </div>
+                        <div class="screenshot-item">
+                            <h3>Giao diện quản lý bán hàng</h3>
+                            <img src="images/pr1_h2.jpg" alt="Sales Management Interface" class="screenshot-image">
+                        </div>
+                        <div class="screenshot-item">
+                            <h3>Giao diện báo cáo thống kê</h3>
+                            <img src="images/pr1_h3.jpg" alt="Reports Interface" class="screenshot-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

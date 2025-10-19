@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống hỗ trợ phúc khảo - Trần Thiện Nhân</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        
+        .project-detail {
+            padding: 40px 0 40px 0;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+        .project-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .project-header {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .project-image-large {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 0 auto 30px;
+            display: block;
+        }
+        .project-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .project-technologies {
+            color: #20b2aa;
+            font-weight: 600;
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .project-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #666;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .project-sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .project-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #20b2aa;
+            padding-bottom: 10px;
+        }
+        .section-list {
+            list-style: none;
+            padding: 0;
+        }
+        .section-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #666;
+            line-height: 1.6;
+        }
+        .section-list li:before {
+            content: "✓";
+            color: #20b2aa;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .back-button {
+            display: inline-block;
+            background: #20b2aa;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: background 0.3s ease;
+        }
+        .back-button:hover {
+            background: #1a9b94;
+        }
+        .project-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #20b2aa;
+        }
+        
+        .project-info p {
+            margin: 8px 0;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .project-sections {
+                grid-template-columns: 1fr;
+            }
+            .project-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="index.html#home" class="nav-link">HOME</a>
+            <a href="index.html#about" class="nav-link">ABOUT</a>
+            <a href="index.html#resume" class="nav-link">RÉSUMÉ</a>
+            <a href="index.html#gallery" class="nav-link">GALLERY</a>
+            <a href="index.html#portfolio" class="nav-link active">PORTFOLIO</a>
+            <a href="blog.html" class="nav-link">BLOG</a>
+            <a href="index.html#contact" class="nav-link">CONTACT</a>
+        </div>
+    </nav>
+
+    <div class="project-detail">
+        <div class="project-container">
+            <a href="index.html" class="back-button">← Quay lại Portfolio</a>
+            
+            <div class="project-header">
+                <img src="images/HeThongPhucKhaoOnl.png" alt="Grade Appeal System" class="project-image-large">
+                <h1 class="project-title">Hệ thống hỗ trợ phúc khảo</h1>
+                <div class="project-technologies">ASP.NET Core, Entity Framework, SQL Server, HTML/CSS/JavaScript, Bootstrap, C#, Visual Studio 2022</div>
+                <p class="project-description">
+                    <strong>Đồ án cơ sở: Công nghệ phần mềm</strong><br>
+                    Website quản lý toàn diện quy trình phúc khảo điểm thi cho sinh viên đại học. Hệ thống hỗ trợ 4 vai trò: sinh viên (nộp đơn, theo dõi), giảng viên (chấm bài), nhân viên (quản lý, phân công), admin (quản trị hệ thống). Tích hợp email notification và quản lý file bài thi số hóa. Đây là đồ án cơ sở nhóm 3 thành viên với sự hướng dẫn của giảng viên bộ môn Công nghệ phần mềm.
+                </p>
+            </div>
+            
+            <div class="project-sections">
+                <div class="project-section">
+                    <h2 class="section-title">Tính năng chính</h2>
+                    <ul class="section-list">
+                        <li><strong>Quản lý đa vai trò:</strong> Sinh viên, Giảng viên, Nhân viên, Admin với phân quyền rõ ràng</li>
+                        <li><strong>Nộp đơn phúc khảo:</strong> Chọn môn học, nhập lý do, upload tài liệu trực tuyến</li>
+                        <li><strong>Theo dõi trạng thái:</strong> Từ nộp đơn đến nhận kết quả cuối cùng</li>
+                        <li><strong>Phân công giảng viên:</strong> Tự động phân công dựa trên môn học</li>
+                        <li><strong>Chấm bài số hóa:</strong> Upload file bài thi, chấm lại, nhập điểm mới</li>
+                        <li><strong>Thông báo email:</strong> Tự động gửi email cho sinh viên và giảng viên</li>
+                        <li><strong>Báo cáo thống kê:</strong> Số lượng đơn, kết quả phúc khảo theo học kỳ</li>
+                        <li><strong>Quản lý đợt phúc khảo:</strong> Mở/đóng đợt theo học kỳ</li>
+                    </ul>
+                </div>
+                
+                <div class="project-section">
+                    <h2 class="section-title">Giao diện hệ thống</h2>
+                    <ul class="section-list">
+                        <li><strong>Dashboard Admin:</strong> Quản lý người dùng, đợt phúc khảo, thống kê</li>
+                        <li><strong>Giao diện sinh viên:</strong> Nộp đơn, xem điểm, theo dõi trạng thái</li>
+                        <li><strong>Giao diện nhân viên:</strong> Duyệt đơn, phân công, upload bài thi</li>
+                        <li><strong>Giao diện giảng viên:</strong> Nhận phân công, chấm bài, nhập kết quả</li>
+                        <li><strong>Hệ thống thông báo:</strong> Email tự động cho tất cả bên liên quan</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-sections">
+                <div class="project-section">
+                    <h2 class="section-title">Thông tin dự án</h2>
+                    <div class="project-info">
+                        <p><strong>Loại dự án:</strong> Đồ án cơ sở</p>
+                        <p><strong>Môn học:</strong> Công nghệ phần mềm</p>
+                        <p><strong>Giảng viên hướng dẫn:</strong> ThS. (Giảng viên bộ môn)</p>
+                        <p><strong>Nhóm thực hiện:</strong> 3 thành viên</p>
+                        <p><strong>Thành viên:</strong> Trần Thiện Nhân, Nguyễn Huỳnh Nam, Trần Lê Minh Quốc</p>
+                        <p><strong>Lớp:</strong> 22DTHB5</p>
+                        <p><strong>Thời gian:</strong> 2025</p>
+                        <p><strong>Trường:</strong> Đại học Công nghệ TP.HCM (HUTECH)</p>
+                    </div>
+                </div>
+                
+                <div class="project-section">
+                    <h2 class="section-title">Công nghệ sử dụng</h2>
+                    <ul class="section-list">
+                        <li><strong>ASP.NET Core:</strong> Framework web hiện đại</li>
+                        <li><strong>Entity Framework:</strong> ORM cho quản lý database</li>
+                        <li><strong>SQL Server:</strong> Hệ quản trị cơ sở dữ liệu</li>
+                        <li><strong>HTML/CSS/JavaScript:</strong> Frontend development</li>
+                        <li><strong>Bootstrap:</strong> Framework CSS responsive</li>
+                        <li><strong>C#:</strong> Ngôn ngữ lập trình backend</li>
+                        <li><strong>Visual Studio 2022:</strong> IDE phát triển</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-sections">
+                <div class="project-section">
+                    <h2 class="section-title">Quy trình nghiệp vụ</h2>
+                    <ul class="section-list">
+                        <li><strong>Bước 1:</strong> Sinh viên đăng nhập và nộp đơn phúc khảo</li>
+                        <li><strong>Bước 2:</strong> Nhân viên tiếp nhận và duyệt đơn</li>
+                        <li><strong>Bước 3:</strong> Upload bài thi số hóa lên hệ thống</li>
+                        <li><strong>Bước 4:</strong> Phân công giảng viên chấm bài</li>
+                        <li><strong>Bước 5:</strong> Giảng viên chấm lại và nhập kết quả</li>
+                        <li><strong>Bước 6:</strong> Thông báo kết quả cho sinh viên</li>
+                    </ul>
+                </div>
+                
+                <div class="project-section">
+                    <h2 class="section-title">Kết quả đạt được</h2>
+                    <ul class="section-list">
+                        <li>Đơn giản hóa quy trình phúc khảo điểm thi, giảm thiểu giấy tờ</li>
+                        <li>Tạo ra hệ thống minh bạch, rõ ràng, nâng cao sự tin tưởng</li>
+                        <li>Giúp cán bộ quản lý dễ dàng giám sát, phân công, tổng hợp</li>
+                        <li>Góp phần thúc đẩy quá trình chuyển đổi số trong quản lý học vụ</li>
+                        <li>Hệ thống hoạt động ổn định với 4 vai trò người dùng</li>
+                        <li>Tích hợp thành công email notification và quản lý file</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-sections">
+                <div class="project-section">
+                    <h2 class="section-title">Đối tượng sử dụng</h2>
+                    <ul class="section-list">
+                        <li><strong>Sinh viên:</strong> Nộp đơn, theo dõi trạng thái, nhận kết quả</li>
+                        <li><strong>Giảng viên:</strong> Nhận phân công, chấm bài, nhập kết quả</li>
+                        <li><strong>Nhân viên:</strong> Quản lý quy trình, phân công, duyệt đơn</li>
+                        <li><strong>Admin:</strong> Quản trị hệ thống, phân quyền, cấu hình</li>
+                    </ul>
+                </div>
+                
+                <div class="project-section">
+                    <h2 class="section-title">Tính năng nổi bật</h2>
+                    <ul class="section-list">
+                        <li><strong>Giao diện thân thiện:</strong> Dễ sử dụng cho mọi đối tượng</li>
+                        <li><strong>Bảo mật cao:</strong> Phân quyền rõ ràng, xác thực người dùng</li>
+                        <li><strong>Thông báo tự động:</strong> Email cho tất cả bên liên quan</li>
+                        <li><strong>Quản lý file:</strong> Upload và quản lý bài thi số hóa</li>
+                        <li><strong>Báo cáo chi tiết:</strong> Thống kê theo học kỳ, môn học</li>
+                        <li><strong>Responsive:</strong> Hoạt động tốt trên mọi thiết bị</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
