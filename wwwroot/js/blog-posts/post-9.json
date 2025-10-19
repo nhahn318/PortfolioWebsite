@@ -7,7 +7,8 @@
     "date": "2024-01-23",
     "category": "Java Programming",
     "tags": ["Java", "Exception Handling", "Try-Catch", "Finally", "Custom Exception", "Best Practices"],
-    "viewCount": 2100,
+    "viewCount": 0,
     "readTime": "22 phút",
-    "featured": true
+    "featured": true,
+    "featuredImage": "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
 }
