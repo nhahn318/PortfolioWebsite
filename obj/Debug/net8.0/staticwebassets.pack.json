@@ -1,28 +1,120 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\User\\PortfolioWebsite\\wwwroot\\blog.html",
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\blog.html",
       "PackagePath": "staticwebassets\\blog.html"
     },
     {
-      "Id": "C:\\Users\\User\\PortfolioWebsite\\wwwroot\\css\\blog.css",
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\css\\blog.css",
       "PackagePath": "staticwebassets\\css\\blog.css"
     },
     {
-      "Id": "C:\\Users\\User\\PortfolioWebsite\\wwwroot\\css\\style.css",
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\css\\style.css",
       "PackagePath": "staticwebassets\\css\\style.css"
     },
     {
-      "Id": "C:\\Users\\User\\PortfolioWebsite\\wwwroot\\index.html",
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\images\\HeThongPhucKhaoOnl.png",
+      "PackagePath": "staticwebassets\\images\\HeThongPhucKhaoOnl.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\images\\HeThongQLCafeWinform.png",
+      "PackagePath": "staticwebassets\\images\\HeThongQLCafeWinform.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\images\\final.jpg",
+      "PackagePath": "staticwebassets\\images\\final.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\images\\java.webp",
+      "PackagePath": "staticwebassets\\images\\java.webp"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\images\\pr1_h1.jpg",
+      "PackagePath": "staticwebassets\\images\\pr1_h1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\images\\pr1_h2.jpg",
+      "PackagePath": "staticwebassets\\images\\pr1_h2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\images\\pr1_h3.jpg",
+      "PackagePath": "staticwebassets\\images\\pr1_h3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
     {
-      "Id": "C:\\Users\\User\\PortfolioWebsite\\wwwroot\\js\\blog.js",
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\js\\blog-posts\\index.js",
+      "PackagePath": "staticwebassets\\js\\blog-posts\\index.js"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\js\\blog-posts\\post-1.json",
+      "PackagePath": "staticwebassets\\js\\blog-posts\\post-1.json"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\js\\blog-posts\\post-2.json",
+      "PackagePath": "staticwebassets\\js\\blog-posts\\post-2.json"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\js\\blog-posts\\post-3.json",
+      "PackagePath": "staticwebassets\\js\\blog-posts\\post-3.json"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\js\\blog-posts\\post-4.json",
+      "PackagePath": "staticwebassets\\js\\blog-posts\\post-4.json"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\js\\blog-posts\\post-5.json",
+      "PackagePath": "staticwebassets\\js\\blog-posts\\post-5.json"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\js\\blog-posts\\post-6.json",
+      "PackagePath": "staticwebassets\\js\\blog-posts\\post-6.json"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\js\\blog-posts\\post-7.json",
+      "PackagePath": "staticwebassets\\js\\blog-posts\\post-7.json"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\js\\blog-posts\\post-8.json",
+      "PackagePath": "staticwebassets\\js\\blog-posts\\post-8.json"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\js\\blog-posts\\post-9.json",
+      "PackagePath": "staticwebassets\\js\\blog-posts\\post-9.json"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\js\\blog.js",
       "PackagePath": "staticwebassets\\js\\blog.js"
     },
     {
-      "Id": "C:\\Users\\User\\PortfolioWebsite\\wwwroot\\js\\script.js",
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\js\\blog.js.backup",
+      "PackagePath": "staticwebassets\\js\\blog.js.backup"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\js\\projects.js",
+      "PackagePath": "staticwebassets\\js\\projects.js"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\js\\script.js",
       "PackagePath": "staticwebassets\\js\\script.js"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\project-cafe.html",
+      "PackagePath": "staticwebassets\\project-cafe.html"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\project-hacking.html",
+      "PackagePath": "staticwebassets\\project-hacking.html"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\project-phuckhao.html",
+      "PackagePath": "staticwebassets\\project-phuckhao.html"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\PortfolioWebsite\\wwwroot\\project-serverless.html",
+      "PackagePath": "staticwebassets\\project-serverless.html"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.PortfolioWebsite.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
