@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tự động cung cấp tài nguyên Serverless - Trần Thiện Nhân</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        
+        .project-detail {
+            padding: 40px 0 40px 0;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+        .project-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .project-header {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .project-image-large {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 0 auto 30px;
+            display: block;
+        }
+        .project-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .project-technologies {
+            color: #20b2aa;
+            font-weight: 600;
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .project-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #666;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .project-sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .project-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #20b2aa;
+            padding-bottom: 10px;
+        }
+        .section-list {
+            list-style: none;
+            padding: 0;
+        }
+        .section-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #666;
+            line-height: 1.6;
+        }
+        .section-list li:before {
+            content: "✓";
+            color: #20b2aa;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .back-button {
+            display: inline-block;
+            background: #20b2aa;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: background 0.3s ease;
+        }
+        .back-button:hover {
+            background: #1a9b94;
+        }
+        .project-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #20b2aa;
+        }
+        
+        .project-info p {
+            margin: 8px 0;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .project-sections {
+                grid-template-columns: 1fr;
+            }
+            .project-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">HOME</a>
+            <a href="index.html#about" class="nav-link">ABOUT</a>
+            <a href="index.html#certificates" class="nav-link">CERTIFICATES</a>
+            <a href="index.html#portfolio" class="nav-link">PORTFOLIO</a>
+            <a href="blog.html" class="nav-link">BLOG</a>
+            <a href="index.html#contact" class="nav-link">CONTACT</a>
+        </div>
+    </nav>
+
+    <div class="project-detail">
+        <div class="project-container">
+            <a href="index.html" class="back-button">← Quay lại Portfolio</a>
+            
+            <div class="project-header">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Serverless Architecture" class="project-image-large">
+                <h1 class="project-title">Tự động cung cấp tài nguyên theo nhu cầu Serverless</h1>
+                <div class="project-technologies">Amazon Aurora Serverless v2, Amazon RDS, AWS Lambda, MySQL, DBeaver, Cloud Computing</div>
+                <p class="project-description">
+                    <strong>Đồ án môn học: Cơ sở dữ liệu nâng cao</strong><br>
+                    Nghiên cứu và thực nghiệm về kiến trúc Serverless với khả năng tự động cung cấp tài nguyên theo nhu cầu thực tế. Sử dụng Amazon Aurora Serverless v2 để kiểm chứng khả năng auto-scaling, tối ưu hóa chi phí và hiệu suất trong môi trường cloud computing. Đây là đồ án nhóm 4 thành viên với sự hướng dẫn của thầy Nguyễn Văn Danh.
+                </p>
+            </div>
+            
+            <div class="project-sections">
+                <div class="project-section">
+                    <h2 class="section-title">Tính năng chính</h2>
+                    <ul class="section-list">
+                        <li><strong>Kiến trúc Event-driven:</strong> Hệ thống phản ứng tự động với các sự kiện</li>
+                        <li><strong>Auto-scaling:</strong> Tự động mở rộng từ 0.5 đến hàng trăm ACU trong vài giây</li>
+                        <li><strong>Cost optimization:</strong> Tính phí theo giây dựa trên tài nguyên sử dụng thực tế</li>
+                        <li><strong>Zero-downtime scaling:</strong> Không gián đoạn khi mở rộng tài nguyên</li>
+                        <li><strong>Event-driven architecture:</strong> Hoạt động dựa trên sự kiện, không cần server chạy liên tục</li>
+                        <li><strong>Resource monitoring:</strong> Theo dõi ACU Utilization để đánh giá hiệu suất</li>
+                    </ul>
+                </div>
+                
+                <div class="project-section">
+                    <h2 class="section-title">Kết quả thực nghiệm</h2>
+                    <ul class="section-list">
+                        <li><strong>Thiết lập môi trường:</strong> Aurora Serverless v2 với 0.5-2 ACU</li>
+                        <li><strong>Dữ liệu lớn:</strong> 100,000 sinh viên và 500,000 điểm số</li>
+                        <li><strong>Mô phỏng tải:</strong> Truy vấn đồng thời để tạo tải cho hệ thống</li>
+                        <li><strong>Monitoring:</strong> Biểu đồ ACU Utilization tăng từ 25% lên 100%</li>
+                        <li><strong>Auto-scaling:</strong> Hệ thống tự thu hẹp khi giảm tải</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-sections">
+                <div class="project-section">
+                    <h2 class="section-title">Thông tin dự án</h2>
+                    <div class="project-info">
+                        <p><strong>Loại dự án:</strong> Đồ án môn học</p>
+                        <p><strong>Môn học:</strong> Cơ sở dữ liệu nâng cao</p>
+                        <p><strong>Giảng viên hướng dẫn:</strong> ThS. Nguyễn Văn Danh</p>
+                        <p><strong>Nhóm thực hiện:</strong> 4 thành viên</p>
+                        <p><strong>Thời gian:</strong> Tháng 4 năm 2025</p>
+                        <p><strong>Trường:</strong> Đại học Công nghệ TP.HCM (HUTECH)</p>
+                    </div>
+                </div>
+                
+                <div class="project-section">
+                    <h2 class="section-title">Công nghệ sử dụng</h2>
+                    <ul class="section-list">
+                        <li><strong>AWS Aurora Serverless v2:</strong> Database serverless tự động scale</li>
+                        <li><strong>Amazon RDS:</strong> So sánh với mô hình truyền thống</li>
+                        <li><strong>DBeaver:</strong> Công cụ quản lý database</li>
+                        <li><strong>MySQL:</strong> Hệ quản trị cơ sở dữ liệu</li>
+                        <li><strong>Cloud Computing:</strong> Kiến trúc đám mây</li>
+                        <li><strong>Auto Scaling:</strong> Tự động điều chỉnh tài nguyên</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-sections">
+                <div class="project-section">
+                    <h2 class="section-title">Quy trình thực nghiệm</h2>
+                    <ul class="section-list">
+                        <li><strong>Bước 1:</strong> Thiết lập môi trường AWS Aurora Serverless v2</li>
+                        <li><strong>Bước 2:</strong> Cấu hình kết nối và truy cập database</li>
+                        <li><strong>Bước 3:</strong> Nhập dữ liệu lớn (100K sinh viên, 500K điểm)</li>
+                        <li><strong>Bước 4:</strong> Mô phỏng truy vấn đồng thời tạo tải</li>
+                        <li><strong>Bước 5:</strong> Theo dõi ACU Utilization và auto-scaling</li>
+                        <li><strong>Bước 6:</strong> Phân tích kết quả và đánh giá hiệu suất</li>
+                    </ul>
+                </div>
+                
+                <div class="project-section">
+                    <h2 class="section-title">Kết luận</h2>
+                    <ul class="section-list">
+                        <li>Aurora Serverless hoạt động ổn định trong suốt quá trình thử nghiệm</li>
+                        <li>Hệ thống phản ứng nhanh khi có tải truy cập tăng đột ngột</li>
+                        <li>ACU tăng từ 25% lên 100% chỉ trong vài phút</li>
+                        <li>Sau khi tải giảm, Aurora tự động thu hẹp tài nguyên</li>
+                        <li>Không cần cấu hình lại hoặc khởi động lại database</li>
+                        <li>Phù hợp với hệ thống có lưu lượng biến động</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

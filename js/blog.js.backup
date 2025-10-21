@@ -19,9 +19,8 @@ class BlogApp {
         try {
             this.blogPosts = await this.postsManager.loadAllPosts();
             console.log('Loaded blog posts:', this.blogPosts.length);
-            console.log('First post:', this.blogPosts[0]);
+            console.log('First post featuredImage:', this.blogPosts[0]?.featuredImage);
             this.featuredPosts = this.postsManager.getFeaturedPosts();
-            console.log('Featured posts:', this.featuredPosts.length);
             this.renderBlogPosts();
             this.renderFeaturedPosts();
             this.renderTagCloud();
@@ -125,18 +124,16 @@ class BlogApp {
         }
 
         container.innerHTML = results.map(post => {
-            if (post.id === 1) {
-                console.log('=== POST 1 DEBUG ===');
-                console.log('Post 1 data:', post);
-                console.log('Post 1 featuredImage:', post.featuredImage);
-                console.log('Post 1 has featuredImage:', !!post.featuredImage);
-                console.log('Full image path:', window.location.origin + '/' + post.featuredImage);
-            }
+            console.log(`Rendering post ${post.id}:`, {
+                title: post.title,
+                featuredImage: post.featuredImage,
+                hasFeaturedImage: !!post.featuredImage
+            });
             return `
             <article class="blog-post-card" onclick="blogApp.openPost(${post.id})">
-                <img src="${post.featuredImage || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'}" alt="${post.title}" class="blog-post-image"
-                     onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'; console.log('Image error for post:', post.id, 'src:', this.src);"
-                     onload="console.log('Image loaded for post:', post.id, 'src:', this.src);">
+                <img src="${post.featuredImage || 'https://via.placeholder.com/400x250/20b2aa/ffffff?text=Blog+Image'}" alt="${post.title}" class="blog-post-image"
+                     onerror="this.src='https://via.placeholder.com/400x250/20b2aa/ffffff?text=Blog+Image'; console.log('Image failed to load for post:', post.id);"
+                     onload="console.log('Image loaded for post:', post.id);">
                 <div class="blog-post-content">
                     <div class="blog-post-meta">
                         <span class="blog-post-category">${post.category}</span>
@@ -171,8 +168,8 @@ class BlogApp {
 
         container.innerHTML = filteredPosts.map(post => `
             <article class="blog-post-card" onclick="blogApp.openPost(${post.id})">
-                <img src="${post.featuredImage || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80/400x250/20b2aa/ffffff?text=Blog+Image'}" alt="${post.title}" class="blog-post-image"
-                     onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80/400x250/20b2aa/ffffff?text=Blog+Image'">
+                <img src="${post.featuredImage || 'https://via.placeholder.com/400x250/20b2aa/ffffff?text=Blog+Image'}" alt="${post.title}" class="blog-post-image"
+                     onerror="this.src='https://via.placeholder.com/400x250/20b2aa/ffffff?text=Blog+Image'">
                 <div class="blog-post-content">
                     <div class="blog-post-meta">
                         <span class="blog-post-category">${post.category}</span>
@@ -197,13 +194,10 @@ class BlogApp {
         const container = document.getElementById('featuredPosts');
         if (!container) return;
 
-        console.log('Featured posts:', this.featuredPosts);
-        console.log('First featured post:', this.featuredPosts[0]);
-
         container.innerHTML = this.featuredPosts.map(post => `
             <div class="featured-post" onclick="blogApp.openPost(${post.id})">
-                <img src="${post.featuredImage || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80/80x60/20b2aa/ffffff?text=Image'}" alt="${post.title}" class="featured-post-image"
-                     onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80/80x60/20b2aa/ffffff?text=Image'">
+                <img src="${post.featuredImageUrl}" alt="${post.title}" class="featured-post-image"
+                     onerror="this.src='https://via.placeholder.com/80x60?text=Image'">
                 <div class="featured-post-content">
                     <h4>${post.title}</h4>
                     <div class="featured-post-meta">
@@ -294,7 +288,7 @@ class BlogApp {
         
         // Thêm fallback cho ảnh
         html = html.replace(/<img([^>]*?)src="([^"]*?)"([^>]*?)>/g, 
-            '<img$1src="$2"$3 onerror="this.src=\'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80/600x400/20b2aa/ffffff?text=Blog+Image\'; this.style.border=\'2px solid #20b2aa\'; this.style.borderRadius=\'8px\';" style="width: 100%; max-width: 600px; height: auto; border-radius: 8px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">');
+            '<img$1src="$2"$3 onerror="this.src=\'https://via.placeholder.com/600x400/20b2aa/ffffff?text=Blog+Image\'; this.style.border=\'2px solid #20b2aa\'; this.style.borderRadius=\'8px\';" style="width: 100%; max-width: 600px; height: auto; border-radius: 8px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">');
         
         // Process code blocks first (before paragraph processing)
         html = html.replace(/```java([\s\S]*?)```/gim, (match, code) => {
@@ -347,8 +341,8 @@ class BlogApp {
 
         container.innerHTML = filteredPosts.map(post => `
             <article class="blog-post-card" onclick="blogApp.openPost(${post.id})">
-                <img src="${post.featuredImage || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80/400x250/20b2aa/ffffff?text=Blog+Image'}" alt="${post.title}" class="blog-post-image"
-                     onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80/400x250/20b2aa/ffffff?text=Blog+Image'">
+                <img src="${post.featuredImage || 'https://via.placeholder.com/400x250/20b2aa/ffffff?text=Blog+Image'}" alt="${post.title}" class="blog-post-image"
+                     onerror="this.src='https://via.placeholder.com/400x250/20b2aa/ffffff?text=Blog+Image'">
                 <div class="blog-post-content">
                     <div class="blog-post-meta">
                         <span class="blog-post-category">${post.category}</span>
