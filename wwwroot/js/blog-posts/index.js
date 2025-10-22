@@ -27,7 +27,7 @@ class BlogPostsManager {
     // Load một bài viết cụ thể
     async loadPost(filename) {
         try {
-            const response = await fetch(`js/blog-posts/${filename}`);
+            const response = await fetch(`./PortfolioWebsite/js/blog-posts/${filename}`);
             if (!response.ok) {
                 throw new Error(`Failed to load ${filename}: ${response.status}`);
             }
